@@ -12,7 +12,7 @@ public:
 
     Graphics(HWND handle)
     {
-        CreateDeviceD3D(handle);
+        CreateGraphicsDevice(handle);
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
         ImGuiIO &io = ImGui::GetIO();
@@ -28,12 +28,12 @@ public:
         ImGui_ImplDX9_Shutdown();
         ImGui_ImplWin32_Shutdown();
         ImGui::DestroyContext();
-        CleanupDeviceD3D();
+        CleanupGraphicsDevice();
     }
 
 private:
 
-    void CreateDeviceD3D(HWND hWnd)
+    void CreateGraphicsDevice(HWND hWnd)
     {
         if((m_d3d = Direct3DCreate9(D3D_SDK_VERSION)) == nullptr)
             throw ExceptionInfo << "Can't create Direct3D9.";
@@ -50,13 +50,13 @@ private:
             throw ExceptionInfo << "Can't create Direct3D9 device.";
     }
 
-    void CleanupDeviceD3D()
+    void CleanupGraphicsDevice()
     {
         if(m_d3ddevice) { m_d3ddevice->Release(); m_d3ddevice = nullptr; }
         if(m_d3d) { m_d3d->Release(); m_d3d = nullptr; }
     }
 
-    void ResetDeviceD3D()
+    void ResetGraphicsDevice()
     {
         ImGui_ImplDX9_InvalidateDeviceObjects();
         HRESULT hr = m_d3ddevice->Reset(&m_d3dpp);
