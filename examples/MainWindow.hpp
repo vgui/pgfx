@@ -11,17 +11,17 @@ public:
     {
     }
 
-    virtual void OnCloseWindow()
-    {
-    }
+//    virtual void OnCloseWindow()
+//    {
+//    }
 
-    virtual void OnDraw()
+/*    virtual void OnDraw()
     {
-    }
+    }*/
 
-    virtual void OnSize(int width, int height)
-    {
-    }
+//    virtual void OnSize(int width, int height)
+//    {
+//    }
 
 private:
 
